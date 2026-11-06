@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Register | EduMind</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg,#e9eaff,#f8f9ff);
+            display: grid;
+            place-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .card {
+            background: white;
+            padding: 35px;
+            width: 100%;
+            max-width: 450px;
+            border-radius: 18px;
+            box-shadow: 0 10px 35px #252b5015;
+        }
+        h1 { color: #6558df; text-align: center; }
+        input {
+            width: 100%;
+            padding: 13px;
+            margin: 9px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            background: #6558df;
+            color: white;
+            border: 0;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        a { color: #6558df; }
+        .error { color: #c0392b; }
+    </style>
+</head>
+<body>
+<div class="card">
+    <h1>✦ EduMind</h1>
+    <h2>Create Account</h2>
+
+    {% for message in messages %}
+        <p class="error">{{ message }}</p>
+    {% endfor %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <input name="first_name" placeholder="First Name" required>
+        <input name="last_name" placeholder="Last Name">
+        <input name="username" placeholder="Username" required>
+        <input name="email" type="email" placeholder="Email" required>
+        <input name="password" type="password" placeholder="Password" required>
+        <input name="confirm_password" type="password"
+               placeholder="Confirm Password" required>
+
+        <button type="submit">Create Account</button>
+    </form>
+
+    <p>Already registered? <a href="{% url 'login' %}">Login</a></p>
+    <a href="{% url 'home' %}">Back to Home</a>
+</div>
+</body>
+</html>

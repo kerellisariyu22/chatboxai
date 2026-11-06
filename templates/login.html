@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login | EduMind</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg,#e9eaff,#f8f9ff);
+            display: grid;
+            place-items: center;
+            min-height: 100vh;
+        }
+        .card {
+            background: white;
+            padding: 40px;
+            width: 90%;
+            max-width: 420px;
+            border-radius: 18px;
+            box-shadow: 0 10px 35px #252b5015;
+        }
+        h1 { color: #6558df; text-align: center; }
+        input {
+            width: 100%;
+            padding: 14px;
+            margin: 12px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            background: #6558df;
+            color: white;
+            border: 0;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        a { color: #6558df; }
+    </style>
+</head>
+<body>
+<div class="card">
+    <h1>✦ EduMind</h1>
+    <h2>Welcome Back!</h2>
+
+    {% for message in messages %}
+        <p>{{ message }}</p>
+    {% endfor %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <input name="username" placeholder="Username" required>
+
+        <input name="password" type="password"
+               placeholder="Password" required>
+
+        <label>
+            <input type="checkbox" name="remember_me"
+                   style="width:auto">
+            Remember Me
+        </label>
+
+        <br><br>
+        <button type="submit">Login</button>
+    </form>
+
+    <p>Don't have an account?
+        <a href="{% url 'register' %}">Register</a>
+    </p>
+</div>
+</body>
+</html>
